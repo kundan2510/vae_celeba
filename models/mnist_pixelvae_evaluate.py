@@ -388,7 +388,7 @@ train_data, dev_data, test_data = lib.mnist_binarized.load(
 ##############Importance Sampling###########
 log2pi = T.constant(np.log(2*np.pi).astype(theano.config.floatX))
 
-k_ = 1000
+k_ = 10
 
 def log_mean_exp(x, axis=1):
     m = T.max(x,  keepdims=True)
