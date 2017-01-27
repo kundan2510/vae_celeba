@@ -22,6 +22,8 @@ def train_loop(
     save_params=False,
     nan_guard=False
     ):
+    
+    train_data_load_time = 0.
 
     params = lib.search(cost, lambda x: hasattr(x, 'param'))
     lib.print_params_info(params)
@@ -94,7 +96,9 @@ def train_loop(
         generator = train_data()
         while True:
             try:
+                start_time = time.time()
                 inputs = generator.next()
+                train_data_load_time += time.time() - start_time
             except StopIteration:
                 break
 
@@ -143,6 +147,7 @@ def train_loop(
                         stats['test '+p[0]] = test_mean_outputs[i]
                 stats['secs'] = total_seconds
                 stats['secs/iter'] = total_seconds / total_iters
+                stats['data-loader-sec/iter'] = train_data_load_time / total_iters
 
                 if test_data != None and (stats['test cost'] < best_test_cost or (early_stop_min != None and total_iters <= early_stop_min)):
                     best_test_cost = stats['test cost']

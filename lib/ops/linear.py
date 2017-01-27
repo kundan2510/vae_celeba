@@ -17,6 +17,7 @@ def Linear(
         inputs,
         biases=True,
         initialization=None,
+        mask_type=None,
         weightnorm=None
         ):
     """
@@ -91,6 +92,9 @@ def Linear(
         )
 
         weight = weight * (norms / weight.norm(2, axis=0)).dimshuffle('x', 0)
+
+    if mask_type is not None:
+        pass
 
     result = T.dot(inputs, weight)
 
