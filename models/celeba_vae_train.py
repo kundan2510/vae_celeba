@@ -1,5 +1,5 @@
 """
-Usage: THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32,lib.cnmem=.95' python -u models/celeba_pixelvae_train.py -edim 32 -ddim 32 -name expname
+Usage: THEANO_FLAGS='mode=FAST_RUN,device=gpu0,floatX=float32,lib.cnmem=.95' python -u models/celeba_vae_train.py -edim 32 -ddim 32 -name expname
 """
 
 import os, sys
@@ -56,8 +56,13 @@ BATCH_SIZE = 32
 TEST_BATCH_SIZE = 64
 ALPHA_ITERS = 20000
 
-OUT_DIR_PARAMS = '/Tmp/kumarkun/celeba/vae/{}/params'.format(args.name)
-OUT_DIR_SAMPLES = '/Tmp/kumarkun/celeba/vae/{}/samples'.format(args.name)
+if os.path.exists("/Tmp"):
+    OUT_PREFIX = "/Tmp/kumarkun"
+else:
+    OUT_PREFIX = "/home/kundan"
+
+OUT_DIR_PARAMS = '{}/celeba/vae/{}/params'.format(OUT_PREFIX, args.name)
+OUT_DIR_SAMPLES = '{}/celeba/vae/{}/samples'.format(OUT_PREFIX, args.name)
 
 
 if not os.path.isdir(OUT_DIR_SAMPLES):
