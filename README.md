@@ -6,7 +6,7 @@ This repository contains implementation of VAE and beta-VAE. Following are the g
 ![VAE Samples][samples_iters82000_time74014.2433658.jpg]
 
 ##Beta-VAE
-![VAE Samples][]
+![VAE Samples][vae_celeba/samples_iters82000_time74103.8527701.jpg ]
 
 ### More samples with interpolation in latent space coming soon
 
